@@ -4,6 +4,7 @@ const contacts = require('../../models/contacts');
 const middlewares = require('../middlewares');
 
 router.get('/', (request, response, next) => {
+
   contacts.findAll()
     .then((contacts) => {response.render('contacts/index', { contacts })})
     .catch( error => next(error) )
@@ -11,6 +12,7 @@ router.get('/', (request, response, next) => {
 
 router.get('/signup', (request, response) => {
   response.render('users/signup')
+})
 
 router.get('/login', (request, response) => {
   response.render('users/login')
