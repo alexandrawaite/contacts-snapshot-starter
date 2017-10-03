@@ -11,6 +11,9 @@ router.get('/', (request, response, next) => {
 
 router.get('/signup', (request, response) => {
   response.render('users/signup')
+
+router.get('/login', (request, response) => {
+  response.render('users/login')
 })
 
 router.use('/contacts', contactsRoutes);

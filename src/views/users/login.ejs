@@ -1,0 +1,20 @@
+<%- include ../partials/header.ejs %>
+
+  <h1>Login</h1>
+
+  <form method="post" action="/?" class="login-form">
+    <pre class="?"></pre>
+    <label>
+      <span>Email:</span>
+      <input type="text" placeholder="Enter Email" name="email" required/>
+    </label>
+    <label>
+      <span>Password:</span>
+      <input type="password" placeholder="Enter Password" name="password" required/>
+    </label>
+    <input type="submit" value="Login">
+    <span><input type="submit" value="Cancel"></span>
+    <span class="?">Not a user? <a href="/signup"> Signup!</a></span>
+  </form>
+
+  <%- include ../partials/footer.ejs %>
