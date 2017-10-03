@@ -98,3 +98,22 @@ nav .search-form input {
   color: red;
   font-weight: bold;
 }
+
+.login-form label {
+  display: block;
+  margin-bottom: 1em;
+}
+
+.login-form label > span {
+  display: inline-block;
+  min-width: 8em;
+}
+
+.login-form input[type="submit"] {
+  margin-top: 1em;
+}
+
+/*.login-form-errors {
+  color: red;
+  font-weight: bold;
+}*/
