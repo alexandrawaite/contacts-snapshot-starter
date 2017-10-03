@@ -98,3 +98,17 @@ nav .search-form input {
   color: red;
   font-weight: bold;
 }
+
+.signup-form label {
+  display: block;
+  margin-bottom: 1em;
+}
+
+.signup-form label > span {
+  display: inline-block;
+  min-width: 8em;
+}
+
+.signup-form input[type="submit"] {
+  margin-top: 1em;
+}
