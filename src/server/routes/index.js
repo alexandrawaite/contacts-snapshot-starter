@@ -1,3 +1,4 @@
+const users = require('../../models/users')
 const router = require('express').Router();
 const contactsRoutes = require('./contacts')
 const contacts = require('../../models/contacts');
@@ -12,6 +13,15 @@ router.get('/', (request, response, next) => {
 
 router.get('/signup', (request, response) => {
   response.render('users/signup')
+})
+
+router.post('/', (request, response, next) => {
+  users.create(request.body)
+  .then(function(user) {
+    if (user) return response.redirect('/')
+    next()
+  })
+  .catch( error => next(error) )
 })
 
 router.get('/login', (request, response) => {
