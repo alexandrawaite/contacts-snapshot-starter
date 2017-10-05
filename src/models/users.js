@@ -1,29 +1,43 @@
 const bcrypt = require('bcrypt');
 const db = require('./db/users');
 
-const encryptedPassword = (password) => {
+const encryptPassword = (password) => {
   const saltRounds = 10;
   return bcrypt.hash(password, saltRounds)
 };
 
-const comparedPassword = (plainPassword, hash) => {
-  return bcrypt.compare(plainPassword, hash)
-};
-
 const create = (user) => {
-  const { first_name, last_name, email, password } = user
-  return encryptedPassword(password)
+  return encryptPassword(user.password)
   .then((hash) => {
     user.password = hash;
     return db.createUser(user)
   })
   .catch( error => {
-    console.log('Error while executing create encryptedPassword')
+    console.log('Error while executing create encryptPassword')
   })
 };
 
+const verifyUser = (email, password) => {
+  return db.findUser(email)
+  .then((validUser) => {
+    if (validUser) {
+      return bcrypt.compare(password, user.password)
+      .then( (result) => {
+        if(result) {
+          return user.id;
+        } else {
+          throw new Error('Invalid Username/Password');
+        }
+      })
+    }
+  })
+  .catch( error => {
+    console.log('Error!', error);
+  })
+}
+
 module.exports = {
   create,
-  encryptedPassword,
-  comparedPassword,
+  encryptPassword,
+  verifyUser
 }

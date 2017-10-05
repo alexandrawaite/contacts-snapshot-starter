@@ -15,17 +15,27 @@ router.get('/signup', (request, response) => {
   response.render('users/signup')
 })
 
-router.post('/', (request, response, next) => {
+router.post('/signup', (request, response) => {
   users.create(request.body)
   .then(function(user) {
     if (user) return response.redirect('/')
-    next()
   })
   .catch( error => next(error) )
 })
 
 router.get('/login', (request, response) => {
   response.render('users/login')
+})
+
+router.post('/login', (request, response) => {
+  const { email, password } = request.body;
+  users.verifyUser(email, password)
+  .then( (user_id) =>{
+    response.redirect('/')
+  })
+  .catch( error =>{
+    console.log('Error while executing login', error);
+  })
 })
 
 router.use('/contacts', contactsRoutes);
