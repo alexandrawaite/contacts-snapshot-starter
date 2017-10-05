@@ -3,21 +3,22 @@
   <h1>Signup Form</h1>
 
   <form method="POST" action="/signup" class="signup-form">
+    <pre class="signup-form-errors"></pre>
     <label>
       <span>First name:</span>
-      <input type="text" placeholder="Enter First Name" name="first_name" />
+      <input type="text" placeholder="Enter First Name" name="first_name" required/>
     </label>
     <label>
       <span>Last name:</span>
-      <input type="text" placeholder="Enter Last Name" name="last_name" />
+      <input type="text" placeholder="Enter Last Name" name="last_name" required/>
     </label>
     <label>
       <span>Email:</span>
-      <input type="email" placeholder="Enter Email" name="email" />
+      <input type="email" placeholder="Enter Email" name="email" required/>
     </label>
     <label>
       <span>Password:</span>
-      <input type="password" placeholder="Enter Password" name="password" />
+      <input type="password" placeholder="Enter Password" name="password" required/>
     </label>
     <input type="submit" value="Signup">
     <span>Already a user? <a href="/login">Log in</a></span>

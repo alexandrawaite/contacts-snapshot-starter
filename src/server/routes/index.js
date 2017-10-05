@@ -24,7 +24,7 @@ router.post('/signup', (request, response) => {
 })
 
 router.get('/login', (request, response) => {
-  response.render('users/login')
+  response.render('users/login', {error: false})
 })
 
 router.post('/login', (request, response) => {
@@ -32,7 +32,8 @@ router.post('/login', (request, response) => {
   users.verifyUser(email, password)
   .then( (userId) =>{
     if (!userId) {
-      response.redirect('/login')
+      const error = 'Invalid Username or Password'
+      response.render('users/login', { error: error });
     } else {
     response.redirect('/')
     }

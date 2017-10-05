@@ -17,10 +17,8 @@
     <span class="?">Not a user? <a href="/signup"> Signup!</a></span>
   </form>
 
-  <% if (Error === 'Invalid Username/Password') {%>
-    <p style="color: red;">
-      Incorrect email and/or password
-    </p>
-  <% } %>
+<% if (error === 'Invalid Username or Password') {%>
+  <div style="color: red;"><%= error %></div>
+<% } %>
 
   <%- include ../partials/footer.ejs %>
