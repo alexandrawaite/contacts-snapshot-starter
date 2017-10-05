@@ -21,14 +21,16 @@ const verifyUser = (email, password) => {
   return db.findUser(email)
   .then((validUser) => {
     if (validUser) {
-      return bcrypt.compare(password, user.password)
+      return bcrypt.compare(password, validUser.password)
       .then( (result) => {
         if(result) {
-          return user.id;
-        } else {
+          return validUser.id;//for session to login the user
+        } else if(!validUser) {
           throw new Error('Invalid Username/Password');
         }
       })
+    } else if(!validUser) {
+      throw new Error('Invalid Username/Password');
     }
   })
   .catch( error => {

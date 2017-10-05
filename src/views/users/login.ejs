@@ -3,6 +3,7 @@
   <h1>Login</h1>
 
   <form method="POST" action="/login" class="login-form">
+    <pre class="login-form-errors"></pre>
     <label>
       <span>Username:</span>
       <input type="text" placeholder="Enter Email" name="email" required/>
@@ -15,5 +16,11 @@
     <span><input type="submit" value="Cancel"></span>
     <span class="?">Not a user? <a href="/signup"> Signup!</a></span>
   </form>
+
+  <% if (Error === 'Invalid Username/Password') {%>
+    <p style="color: red;">
+      Incorrect email and/or password
+    </p>
+  <% } %>
 
   <%- include ../partials/footer.ejs %>

@@ -30,8 +30,12 @@ router.get('/login', (request, response) => {
 router.post('/login', (request, response) => {
   const { email, password } = request.body;
   users.verifyUser(email, password)
-  .then( (user_id) =>{
+  .then( (userId) =>{
+    if (!userId) {
+      response.redirect('/login')
+    } else {
     response.redirect('/')
+    }
   })
   .catch( error =>{
     console.log('Error while executing login', error);
