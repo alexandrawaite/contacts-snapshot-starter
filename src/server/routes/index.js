@@ -35,6 +35,7 @@ router.post('/login', (request, response) => {
       const error = 'Invalid Username or Password'
       response.render('users/login', { error: error });
     } else {
+      request.session.user = userId;
     response.redirect('/')
     }
   })

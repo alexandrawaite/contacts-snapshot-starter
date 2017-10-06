@@ -14,9 +14,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(methodOverride('_method'))
 
-// app.use(session({
-//
-// }))
+app.use(session({
+  name: 'user_sid',
+  secret:'contactssnapshotstarter',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { expires: 60000 }
+}))
 
 app.use(middlewares.setDefaultResponseLocals)
 
