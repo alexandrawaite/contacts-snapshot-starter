@@ -19,6 +19,7 @@ const setDefaultResponseLocals = (request, response, next) => {
 const sessionChecker = (request, response, next) => {
   if (!(request.session.user && request.cookie.user_sid)) {
     response.redirect('/login')
+    return
   } else {
     next()
   }

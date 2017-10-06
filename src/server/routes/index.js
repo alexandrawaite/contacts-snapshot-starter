@@ -4,7 +4,7 @@ const contactsRoutes = require('./contacts')
 const contacts = require('../../models/contacts');
 const middlewares = require('../middlewares');
 
-router.get('/', (request, response, next) => {
+router.get('/', middlewares.sessionChecker, (request, response, next) => {
 
   contacts.findAll()
     .then((contacts) => {response.render('contacts/index', { contacts })})
@@ -44,7 +44,7 @@ router.post('/login', (request, response) => {
   })
 })
 
-router.use('/contacts', contactsRoutes);
+router.use('/contacts', middlewares.sessionChecker, contactsRoutes);
 
 router.use(middlewares.logErrors);
 router.use(middlewares.errorHandler);
