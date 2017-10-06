@@ -5,6 +5,7 @@ const methodOverride = require('method-override')
 const routes = require('./server/routes');
 const middlewares = require('./server/middlewares');
 const session = require('express-session');
+const cookieParser =require('cookie-parser');
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views')
@@ -13,13 +14,14 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(methodOverride('_method'))
+app.use(cookieParser());
 
 app.use(session({
   name: 'user_sid',
   secret:'contactssnapshotstarter',
   resave: false,
   saveUninitialized: false,
-  cookie: { expires: 60000 }
+  cookie: {expires: 600000}
 }))
 
 app.use(middlewares.setDefaultResponseLocals)

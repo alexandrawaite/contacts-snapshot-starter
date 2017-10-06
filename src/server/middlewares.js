@@ -9,21 +9,20 @@ const logErrors = (error, request, response, next) => {
 
 const notFoundHandler = (request, response) => {
   response.status(404).render('common/not_found', {name: 'Foobar'})
-}
+};
 
 const setDefaultResponseLocals = (request, response, next) => {
   response.locals.query = ''
   next()
-}
+};
 
 const sessionChecker = (request, response, next) => {
-  if (!(request.session.user && request.cookie.user_sid)) {
+  if (!(request.session.user)) {
     response.redirect('/login')
-    return
   } else {
     next()
   }
-}
+};
 
 module.exports = {
   errorHandler,

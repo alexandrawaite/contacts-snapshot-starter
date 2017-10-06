@@ -1,16 +1,14 @@
 const db = require('./db');
 
 const createUser = function(user) {
-  return db.query(`INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4)`, [user.first_name, user.last_name, user.email, user.password])
-  .catch( error => {
+  return db.query(`INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4)`, [user.first_name, user.last_name, user.email, user.password]).catch(error => {
     console.error('Error while executing users.create')
     throw error
   })
 }
 
 const findUser = function(email) {
-  return db.oneOrNone(`SELECT * FROM users WHERE email = $1`, [email])
-  .catch( error => {
+  return db.oneOrNone(`SELECT * FROM users WHERE email = $1`, [email]).catch(error => {
     console.error('Error while executing users.findUser')
     throw error
   })

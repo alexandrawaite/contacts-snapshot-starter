@@ -12,28 +12,28 @@ const create = (user) => {
     user.password = hash;
     return db.createUser(user)
   })
-  .catch( error => {
+  .catch(error => {
     console.log('Error while executing create encryptPassword')
   })
 };
 
 const verifyUser = (email, password) => {
   return db.findUser(email)
-  .then((validUser) => {
-    if (validUser) {
-      return bcrypt.compare(password, validUser.password)
-      .then( (result) => {
-        if(result) {
-          return validUser.id;//for session to login the user
-        } else if(!validUser) {
+  .then((validEmail) => {
+    if (validEmail) {
+      return bcrypt.compare(password, validEmail.password)
+      .then((validPassword) => {
+        if (validPassword) {
+          return validEmail.id; //for session to login the user
+        } else if (!validPassword) {
           throw new Error('Invalid Username/Password');
         }
       })
-    } else if(!validUser) {
+    } else if (!validEmail) {
       throw new Error('Invalid Username/Password');
     }
   })
-  .catch( error => {
+  .catch(error => {
     console.log('Error!', error);
   })
 }
