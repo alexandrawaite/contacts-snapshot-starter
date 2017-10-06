@@ -23,6 +23,7 @@ app.use(session({
 }))
 
 app.use(middlewares.setDefaultResponseLocals)
+app.use(middlewares.sessionChecker)
 
 app.use('/', routes)
 

@@ -16,4 +16,18 @@ const setDefaultResponseLocals = (request, response, next) => {
   next()
 }
 
-module.exports = { errorHandler, logErrors, notFoundHandler, setDefaultResponseLocals };
+const sessionChecker = (request, response, next) => {
+  if (!(request.session.user && request.cookie.user_sid)) {
+    response.redirect('/login')
+  } else {
+    next()
+  }
+}
+
+module.exports = {
+  errorHandler,
+  logErrors,
+  notFoundHandler,
+  setDefaultResponseLocals,
+  sessionChecker
+};
