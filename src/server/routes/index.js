@@ -31,9 +31,27 @@ router.get('/login', (request, response) => {
 
 router.post('/login', (request, response) => {
   const {email, password} = request.body;
+
+  // users.findByEmail(email)
+  // .then(user => {
+  //   if(!user) {
+  //     //redirect to the login page
+  //   }
+  //   users.comparePassword(user.encrypted_password, password)
+  //   .then( isValidPassword => {
+  //     if(isValidPassword) {
+  //       // good!
+  //     } else {
+  //       // bad.. redirect the login page
+  //     }
+  //   })
+  //
+  //
+  // })
+
   users.verifyUser(email, password)
   .then((userId) => {
-    console.log("user::::", userId);
+    //console.log("user::::", userId);
     if (!userId) {
       const error = 'Invalid Username or Password'
       response.render('users/login', {error: error});
